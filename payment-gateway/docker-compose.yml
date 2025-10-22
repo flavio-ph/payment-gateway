@@ -1,0 +1,47 @@
+services:
+  payment-gateway-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payment-gateway-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/payment_gateway_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      EXTERNAL_AUTHORIZER_URL: https://zsy6tx7aql.execute-api.sa-east-1.amazonaws.com/authorizer
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - payment-network
+    env_file:
+      - .env
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - payment-network
+
+volumes:
+  mysql-data:
+
+networks:
+  payment-network:
+    driver: bridge
