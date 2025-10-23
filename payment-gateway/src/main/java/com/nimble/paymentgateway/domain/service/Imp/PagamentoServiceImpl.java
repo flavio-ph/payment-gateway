@@ -16,7 +16,6 @@ import com.nimble.paymentgateway.domain.repository.CobrancaRepository;
 import com.nimble.paymentgateway.domain.repository.ContaRepository;
 import com.nimble.paymentgateway.domain.repository.PagamentoRepository;
 import com.nimble.paymentgateway.domain.repository.UsuarioRepository;
-// Import removido (ContaService não estava sendo usado)
 import com.nimble.paymentgateway.domain.service.PagamentoService;
 import com.nimble.paymentgateway.infra.integration.AuthorizerClient;
 import jakarta.transaction.Transactional;
@@ -81,7 +80,6 @@ public class PagamentoServiceImpl implements PagamentoService {
         return registrarPagamento(cobranca, pagador, MetodoPagamento.SALDO, null, StatusPagamento.APROVADO);
     }
 
-    // Alteração: Método agora recebe PagamentoRequestDTO
     private PagamentoResponseDTO pagarComCartao(Cobranca cobranca, Usuario pagador, PagamentoRequestDTO dto) {
 
 
@@ -151,7 +149,6 @@ public class PagamentoServiceImpl implements PagamentoService {
 
     @Override
     public PagamentoResponseDTO efetuarPagamento(PagamentoRequestDTO dto) {
-        // Método obsoleto, use processarPagamento(dto, cpf)
         return null;
     }
 

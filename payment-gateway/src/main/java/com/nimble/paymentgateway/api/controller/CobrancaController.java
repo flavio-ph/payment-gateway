@@ -2,7 +2,7 @@ package com.nimble.paymentgateway.api.controller;
 
 import com.nimble.paymentgateway.api.dto.CobrancaRequestDTO;
 import com.nimble.paymentgateway.api.dto.CobrancaResponseDTO;
-import com.nimble.paymentgateway.domain.model.enums.StatusCobranca; // Importar o Enum
+import com.nimble.paymentgateway.domain.model.enums.StatusCobranca; 
 import com.nimble.paymentgateway.domain.service.CobrancaService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List; // Importar List
+import java.util.List; 
 
 @RestController
 @RequestMapping("/cobrancas")

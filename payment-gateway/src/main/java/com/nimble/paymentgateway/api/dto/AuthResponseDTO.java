@@ -7,6 +7,6 @@ public record AuthResponseDTO(
         long expiresIn
 ) {
     public AuthResponseDTO(String accessToken) {
-        this(accessToken, "Bearer", 3600L); // 1 hora (em segundos)
+        this(accessToken, "Bearer", 3600L); 
     }
 }

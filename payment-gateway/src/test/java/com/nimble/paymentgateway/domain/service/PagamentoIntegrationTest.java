@@ -11,16 +11,16 @@ import com.nimble.paymentgateway.domain.model.Usuario;
 import com.nimble.paymentgateway.domain.model.enums.MetodoPagamento;
 import com.nimble.paymentgateway.domain.model.enums.StatusCobranca;
 import com.nimble.paymentgateway.domain.model.enums.StatusPagamento;
-import com.nimble.paymentgateway.domain.repository.ContaRepository; // Assuming you need direct access
-import com.nimble.paymentgateway.domain.repository.UsuarioRepository; // Assuming you need direct access
-import com.nimble.paymentgateway.domain.service.UsuarioService; // For user registration
+import com.nimble.paymentgateway.domain.repository.ContaRepository; 
+import com.nimble.paymentgateway.domain.repository.UsuarioRepository; 
+import com.nimble.paymentgateway.domain.service.UsuarioService; 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort; // Inject random port
+import org.springframework.boot.test.web.server.LocalServerPort; 
 import org.springframework.http.*;
 
 import java.math.BigDecimal;

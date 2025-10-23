@@ -9,13 +9,13 @@ import com.nimble.paymentgateway.domain.model.enums.StatusCobranca;
 import com.nimble.paymentgateway.domain.repository.CobrancaRepository;
 import com.nimble.paymentgateway.domain.repository.UsuarioRepository;
 import com.nimble.paymentgateway.domain.service.CobrancaService;
-import com.nimble.paymentgateway.domain.service.PagamentoService; // Necessário para estorno
+import com.nimble.paymentgateway.domain.service.PagamentoService; 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors; // Importar Collectors
+import java.util.stream.Collectors; 
 
 @Service
 @RequiredArgsConstructor
@@ -100,7 +100,6 @@ public class CobrancaServiceImpl implements CobrancaService {
     }
 
     private CobrancaResponseDTO mapToDTO(Cobranca c) {
-        // ... (método mapToDTO como antes) ...
         return new CobrancaResponseDTO(
                 c.getId(),
                 c.getUsuarioOrigem() != null ? c.getUsuarioOrigem().getId() : null,

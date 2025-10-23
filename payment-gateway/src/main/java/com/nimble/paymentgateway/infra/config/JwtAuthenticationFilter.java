@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-// Importa a implementação específica que você criou
 import com.nimble.paymentgateway.infra.config.CustomUserDetailsServiceImpl;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
