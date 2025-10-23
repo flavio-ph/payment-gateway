@@ -7,6 +7,7 @@ import com.nimble.paymentgateway.domain.model.Usuario;
 import com.nimble.paymentgateway.domain.repository.ContaRepository;
 import com.nimble.paymentgateway.domain.repository.UsuarioRepository;
 import com.nimble.paymentgateway.domain.service.UsuarioService;
+import com.nimble.paymentgateway.infra.validation.CpfValidator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,7 +50,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public Usuario registrarUsuario(String nome, String email, String cpf, String senha) {
-        if (usuarioRepository.existsByCpf(cpf))
+        if (!CpfValidator.isValid(cpf)) {
+            throw new BusinessValidationException("CPF inválido.");
+        }
+
+        String cpfNumerico = cpf.replaceAll("[^\\d]", "");
+
+        if (usuarioRepository.existsByCpf(cpfNumerico))
             throw new BusinessValidationException("Já existe um usuário com este CPF.");
 
         if (usuarioRepository.existsByEmail(email))
@@ -57,7 +64,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
-        usuario.setCpf(cpf);
+        usuario.setCpf(cpfNumerico);
         usuario.setEmail(email);
         usuario.setSenhaHash(passwordEncoder.encode(senha));
 

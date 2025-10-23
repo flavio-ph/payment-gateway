@@ -28,8 +28,9 @@ public class CobrancaController {
             @AuthenticationPrincipal UserDetails userDetails) {
 
         String cpfOrigem = userDetails.getUsername();
-        // Considerar retornar HttpStatus.CREATED (201) em vez de OK (200)
         return ResponseEntity.ok(cobrancaService.criarCobranca(dto, cpfOrigem));
+
+        
     }
 
     @GetMapping("/{id}")

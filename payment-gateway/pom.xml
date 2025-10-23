@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.6</version>
+        <version>3.3.5</version> <!-- em vez de 3.5.6 -->
         <relativePath/>
     </parent>
 
@@ -80,13 +80,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- SWAGGER / OPENAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.5.0</version>
+            <version>2.6.0</version>
         </dependency>
-
         <!-- LOMBOK -->
         <dependency>
             <groupId>org.projectlombok</groupId>

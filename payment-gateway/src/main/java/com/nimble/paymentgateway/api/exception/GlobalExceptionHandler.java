@@ -3,6 +3,7 @@ package com.nimble.paymentgateway.api.exception;
 import com.nimble.paymentgateway.domain.exception.BusinessValidationException;
 import com.nimble.paymentgateway.domain.exception.PagamentoException;
 import com.nimble.paymentgateway.domain.exception.ResourceNotFoundException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -87,4 +88,13 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(body, status);
     }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<Object> handleExpiredJwtException(
+            ExpiredJwtException ex, WebRequest request) {
+        log.warn("Token JWT expirado interceptado: {}", ex.getMessage());
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED,
+                "Sessão inválida ou expirada. Por favor, faça login novamente.", request);
+    }
+
 }
